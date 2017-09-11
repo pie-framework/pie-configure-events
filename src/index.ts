@@ -1,14 +1,20 @@
 export class ModelUpdatedEvent extends CustomEvent {
+
+  static TYPE = 'model.updated';
+
   constructor(readonly update: any, readonly reset: boolean = false) {
-    super('model.updated', { bubbles: true, detail: { update, reset } });
+    super(ModelUpdatedEvent.TYPE, { bubbles: true, detail: { update, reset } });
   }
 }
 
 export type DeleteDone = (e?: Error) => void;
 
 export class DeleteImageEvent extends CustomEvent {
+
+  static TYPE = 'delete.image';
+
   constructor(readonly src: string, readonly done: DeleteDone) {
-    super('delete.image', { bubbles: true, detail: { src, done } });
+    super(DeleteImageEvent.TYPE, { bubbles: true, detail: { src, done } });
   }
 }
 
@@ -20,7 +26,9 @@ export interface ImageHandler {
 }
 
 export class InsertImageEvent extends CustomEvent {
+  static TYPE = 'insert.image';
+
   constructor(readonly handler: ImageHandler) {
-    super('insert.image', { bubbles: true, detail: handler });
+    super(InsertImageEvent.TYPE, { bubbles: true, detail: handler });
   }
 }
