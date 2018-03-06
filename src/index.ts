@@ -1,4 +1,10 @@
-export class ModelUpdatedEvent extends CustomEvent {
+export type ModelUpdatedDetail = {
+  update: any;
+  reset: boolean;
+};
+
+
+export class ModelUpdatedEvent extends CustomEvent<ModelUpdatedDetail> {
 
   static TYPE = 'model.updated';
 
@@ -9,7 +15,12 @@ export class ModelUpdatedEvent extends CustomEvent {
 
 export type DeleteDone = (e?: Error) => void;
 
-export class DeleteImageEvent extends CustomEvent {
+export type DeleteImageDetail = {
+  src: string;
+  done: DeleteDone;
+};
+
+export class DeleteImageEvent extends CustomEvent<DeleteImageDetail> {
 
   static TYPE = 'delete.image';
 
@@ -25,7 +36,7 @@ export interface ImageHandler {
   progress: (percent: number, bytes: number, total: number) => void;
 }
 
-export class InsertImageEvent extends CustomEvent {
+export class InsertImageEvent extends CustomEvent<ImageHandler> {
   static TYPE = 'insert.image';
 
   constructor(readonly handler: ImageHandler) {
