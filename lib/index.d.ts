@@ -20,6 +20,7 @@ export declare class DeleteImageEvent extends CustomEvent<DeleteImageDetail> {
     constructor(src: string, done: DeleteDone);
 }
 export interface ImageHandler {
+    isPasted?: boolean;
     cancel: () => void;
     done: (err?: Error, src?: string) => void;
     fileChosen: (file: File) => void;
@@ -29,4 +30,25 @@ export declare class InsertImageEvent extends CustomEvent<ImageHandler> {
     readonly handler: ImageHandler;
     static TYPE: string;
     constructor(handler: ImageHandler);
+}
+export declare type DeleteSoundDetail = {
+    src: string;
+    done: DeleteDone;
+};
+export declare class DeleteSoundEvent extends CustomEvent<DeleteSoundDetail> {
+    readonly src: string;
+    readonly done: DeleteDone;
+    static TYPE: string;
+    constructor(src: string, done: DeleteDone);
+}
+export interface SoundHandler {
+    cancel: () => void;
+    done: (err?: Error, src?: string) => void;
+    fileChosen: (file: File) => void;
+    progress: (percent: number, bytes: number, total: number) => void;
+}
+export declare class InsertSoundEvent extends CustomEvent<SoundHandler> {
+    readonly handler: SoundHandler;
+    static TYPE: string;
+    constructor(handler: SoundHandler);
 }
