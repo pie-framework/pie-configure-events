@@ -31,3 +31,24 @@ export declare class InsertImageEvent extends CustomEvent<ImageHandler> {
     static TYPE: string;
     constructor(handler: ImageHandler);
 }
+export declare type DeleteSoundDetail = {
+    src: string;
+    done: DeleteDone;
+};
+export declare class DeleteSoundEvent extends CustomEvent<DeleteSoundDetail> {
+    readonly src: string;
+    readonly done: DeleteDone;
+    static TYPE: string;
+    constructor(src: string, done: DeleteDone);
+}
+export interface SoundHandler {
+    cancel: () => void;
+    done: (err?: Error, src?: string) => void;
+    fileChosen: File;
+    progress: (percent: number, bytes: number, total: number) => void;
+}
+export declare class InsertSoundEvent extends CustomEvent<SoundHandler> {
+    readonly handler: SoundHandler;
+    static TYPE: string;
+    constructor(handler: SoundHandler);
+}

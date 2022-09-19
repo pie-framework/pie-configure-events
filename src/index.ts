@@ -5,7 +5,6 @@ export type ModelUpdatedDetail = {
 
 
 export class ModelUpdatedEvent extends CustomEvent<ModelUpdatedDetail> {
-
   static TYPE = 'model.updated';
 
   constructor(readonly update: any, readonly reset: boolean = false) {
@@ -21,7 +20,6 @@ export type DeleteImageDetail = {
 };
 
 export class DeleteImageEvent extends CustomEvent<DeleteImageDetail> {
-
   static TYPE = 'delete.image';
 
   constructor(readonly src: string, readonly done: DeleteDone) {
@@ -44,3 +42,32 @@ export class InsertImageEvent extends CustomEvent<ImageHandler> {
     super(InsertImageEvent.TYPE, { bubbles: true, detail: handler });
   }
 }
+
+export type DeleteSoundDetail = {
+  src: string;
+  done: DeleteDone;
+};
+
+export class DeleteSoundEvent extends CustomEvent<DeleteSoundDetail> {
+  static TYPE = 'delete.sound';
+
+  constructor(readonly src: string, readonly done: DeleteDone) {
+    super(DeleteSoundEvent.TYPE, { bubbles: true, detail: { src, done } });
+  }
+}
+
+export interface SoundHandler {
+  cancel: () => void;
+  done: (err?: Error, src?: string) => void;
+  fileChosen: File;
+  progress: (percent: number, bytes: number, total: number) => void;
+}
+
+export class InsertSoundEvent extends CustomEvent<SoundHandler> {
+  static TYPE = 'insert.sound';
+
+  constructor(readonly handler: SoundHandler) {
+    super(InsertSoundEvent.TYPE, { bubbles: true, detail: handler });
+  }
+}
+
