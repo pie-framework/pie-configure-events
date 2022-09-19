@@ -44,7 +44,7 @@ export declare class DeleteSoundEvent extends CustomEvent<DeleteSoundDetail> {
 export interface SoundHandler {
     cancel: () => void;
     done: (err?: Error, src?: string) => void;
-    fileChosen: (file: File) => void;
+    fileChosen: File;
     progress: (percent: number, bytes: number, total: number) => void;
 }
 export declare class InsertSoundEvent extends CustomEvent<SoundHandler> {

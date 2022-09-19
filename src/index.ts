@@ -59,7 +59,7 @@ export class DeleteSoundEvent extends CustomEvent<DeleteSoundDetail> {
 export interface SoundHandler {
   cancel: () => void;
   done: (err?: Error, src?: string) => void;
-  fileChosen: (file: File) => void;
+  fileChosen: File;
   progress: (percent: number, bytes: number, total: number) => void;
 }
 
