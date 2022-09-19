@@ -20,6 +20,7 @@ export declare class DeleteImageEvent extends CustomEvent<DeleteImageDetail> {
     constructor(src: string, done: DeleteDone);
 }
 export interface ImageHandler {
+    isPasted?: boolean;
     cancel: () => void;
     done: (err?: Error, src?: string) => void;
     fileChosen: (file: File) => void;
