@@ -32,6 +32,7 @@ export interface ImageHandler {
   cancel: () => void;
   done: (err?: Error, src?: string) => void;
   fileChosen: (file: File) => void;
+  getChosenFile?: () => File;
   progress: (percent: number, bytes: number, total: number) => void;
 }
 
